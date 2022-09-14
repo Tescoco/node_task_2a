@@ -154,7 +154,6 @@ router.get("/export/analytics", function _callee5(req, res) {
               return console.log(err);
             }
 
-            console.log("The file was saved!");
             res.send({
               message: "success"
             });
