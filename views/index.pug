@@ -1,0 +1,62 @@
+extends layout
+
+block content 
+  div.container
+   .col
+    .card
+     .degreeCard(data-name="degree")
+      img.tempImg(src=image, alt="image")
+      .degree #{temp} °C
+    .card
+     .noClicksCard(data-name="click")
+      .clickDesc Number of Clicks
+      .clickInner  100
+    .card
+     .exportXMLCard(data-name="exportXMLCard")
+      .exportDesc Export XML
+      .exportBTN  Export
+   .col
+    .card
+     .dropdownCard(data-name="dropdown input")
+       <input id="userInput" type="text" name="airport" list="airportName">
+       datalist.airportName
+       </datalist>
+    .card
+     .mapCard(data-name="Map")
+    .card
+     .distanceCard(data-name="Arctic distance")
+      .distanceDesc Distance from Arctic
+      .distanceInner  KM
+   .col
+    .card
+     .timeCard(data-name="Nigerian Time")
+      .timeCardDesc Nigeria Time
+      .timeCardInner
+       p.nigeriaTime
+    .card
+     .timeCard2(data-name="Pakistan Time")
+      .timeCardDesc Pakistan Time
+      .timeCardInner
+       p.pakistanTime
+    .card
+     .redditCard(data-name="reddit")
+      .redditMain
+       .redditPostedBy posted by teslim
+       .redditTitle What is life
+       .redditLink google.com
+   .col
+    .card
+     .timeCard(data-name="London Time")
+      .timeCardDesc London Time
+      .timeCardInner
+       p.londonTime
+    .card
+     .timeCard2(data-name="EST Time")
+      .timeCardDesc EST Time
+      .timeCardInner
+       p.ESTTime
+    .card
+     .coinCard(data-name="coin")
+    .card
+     .uploadCard(data-name="upload")
+
