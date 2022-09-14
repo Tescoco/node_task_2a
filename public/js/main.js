@@ -6,8 +6,6 @@ const updateWeatherInterval = () => {
 
     let { condition, temp_c } = data.current
 
-    console.log(condition)
-
 
     document.querySelector(".degree").textContent = `${temp_c} °C`
     document
@@ -137,13 +135,13 @@ const topFourReddit = async () => {
       evenPost.push(data.data.children[i])
     }
   }
-  evenPost.forEach(({ data: { author, title, link, score } }) => {
+  evenPost.forEach(({ data: { author, title, url, score } }) => {
     statsByUser[author] = !statsByUser[author]
-      ? { postCount: 1, score, link, title }
+      ? { postCount: 1, score, url, title }
       : {
         postCount: statsByUser[author].postCount + 1,
         score: statsByUser[author].score + score,
-        link, title
+        url, title
       };
   });
 
@@ -151,14 +149,38 @@ const topFourReddit = async () => {
     username,
     score: statsByUser[username].score,
     postCount: statsByUser[username].postCount,
-    link: statsByUser[username].link, title: statsByUser[username].title
+    url: statsByUser[username].url, title: statsByUser[username].title
   }));
 
   const sortedList = userList.sort((userA, userB) => userB.score - userA.score);
 
-  console.log(sortedList)
+  const topRedditPost = sortedList.slice(0, 4)
 
-  // document.querySelector(".clickInner").textContent = data.click_count;
+  const container = document.querySelector('.redditCard');
+
+  topRedditPost.forEach(({ username, title, url }, i) => {
+    const redditMain = document.createElement('div');
+    redditMain.classList.add('redditMain');
+
+    const redditPostedBy = document.createElement('div');
+    redditPostedBy.classList.add('redditPostedBy');
+    redditPostedBy.innerText = username
+
+    const redditTitle = document.createElement('div');
+    redditTitle.classList.add('redditTitle');
+    redditTitle.innerText = title
+
+    const redditLink = document.createElement('div');
+    redditLink.classList.add('redditLink');
+    redditLink.innerText = url
+
+    redditMain.appendChild(redditPostedBy);
+    redditMain.appendChild(redditTitle);
+    redditMain.appendChild(redditLink);
+    container.appendChild(redditMain);
+  });
 };
+
+// document.querySelector(".clickInner").textContent = data.click_count;
 
 topFourReddit()
